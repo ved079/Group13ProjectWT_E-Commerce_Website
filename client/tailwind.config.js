@@ -1,15 +1,19 @@
 /** @type {import('tailwindcss').Config} */
-import flowbitePlugin from 'flowbite/plugin';
+import { defineConfig } from 'tailwindcss';
 
-export default {
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [
-    flowbitePlugin,
-  ],
-};
+export default defineConfig(async () => {
+  const flowbitePlugin = (await import('flowbite/plugin')).default;
+  
+  return {
+    content: [
+      './src/**/*.{js,jsx,ts,tsx}',
+      'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
+    ],
+    theme: {
+      extend: {},
+    },
+    plugins: [
+      flowbitePlugin,
+    ],
+  };
+});
